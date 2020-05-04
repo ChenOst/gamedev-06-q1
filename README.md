@@ -181,11 +181,12 @@ Another thing we added is that the player can't shoot straight at infinite
  ### Added to: KeyboardSpawner Script 
  
 ```
-private void Update() {
-if (Input.GetKeyDown(keyToPress) && Time.time > _nextLaser)
+private void Update()
 {
-     _nextLaser = Time.time + _cooldown;
-    spawnObject();
+    if (Input.GetKeyDown(keyToPress) && Time.time > _nextLaser)
+    {
+        _nextLaser = Time.time + _cooldown;
+        spawnObject();
     }
 }
 ```
