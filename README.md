@@ -62,9 +62,9 @@ else if (transform.position.y >= 10)
 ### Added new Script: Player
 Contains information about the player,
 such as the amount of life, shield and whether he collided 
-with an enemy while the shield was activated or not and accordingly send info to "Lives" obejct.
+with an enemy while the shield was activated or not and accordingly send info to `Lives` obejct.
 
-- "Lives" obejct - Located in the right corner of the screen, shows the player at any
+- `Lives` obejct - Located in the right corner of the screen, shows the player at any
  given moment the number of lives he has left.
  
  <img src="Images/lives.png" width=400>
@@ -99,3 +99,44 @@ public void TakingDamage()
 }
 ```
 TakingDamage() is activated when collision is spotted.
+
+## Powerup Spawner
+We created `PowerupSpawner` object in which we put the `ShieldSpawner` and
+ `ExtraShotSpawner`, in both we use `TimedSpawnerRandom` script in order
+to spawn the Shield and Extra Shot. 
+## Shield
+### Added to: ShieldThePlayer Script 
+When collision between Shield and Player is detected, this script
+activates the player's shield for 5 seconds, with every second the shield disappears.
+ While the player has the shield he is not hit by enemies.
+ 
+```
+private void OnTriggerEnter2D(Collider2D other) {
+    if (other.tag == "Player") 
+    {
+        Debug.Log("Shield triggered by player");
+        player = other.transform.GetComponent<Player>();
+        if (player != null)
+        {
+            player.ShieldsActive(true);
+        }
+    ...
+```
+The function that makes the shield fade:
+```
+public IEnumerator Fade()
+{
+    Renderer renderer = _shield.GetComponent<Renderer>();
+    Color newColor = renderer.material.color;
+    int i = 5;
+    for (float f = 1f; f >= 0; f -= 0.20f)
+    {
+        newColor.a = f;
+        renderer.material.color = newColor;
+        Debug.Log("Shield: " + i-- + " seconds remaining!");
+        yield return new WaitForSeconds(1f);
+    }
+}
+```
+
+ <img src="Images/shield1.png" width=400>  <img src="Images/shield2.png" width=400>

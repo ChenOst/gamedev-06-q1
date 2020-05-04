@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupThePlayer : MonoBehaviour
+public class ExtraShotThePlayer : MonoBehaviour
 {
     [Tooltip("The number of seconds that the powerup remains active")] [SerializeField] float duration;
     KeyboardSpawner player;
