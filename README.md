@@ -67,6 +67,8 @@ with an enemy while the shield was activated or not and accordingly send info to
 - "Lives" obejct - Located in the right corner of the screen, shows the player at any
  given moment the number of lives he has left.
  
+ <img src="Images/lives.png" width=400>
+ 
 When the player dies (Lives = 0), we decied to stop the spawning of the other objects.
 
 ```
