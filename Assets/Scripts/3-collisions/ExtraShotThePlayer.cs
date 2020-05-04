@@ -11,7 +11,7 @@ public class ExtraShotThePlayer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Powerup triggered by player");
+            Debug.Log("ExtraShot triggered by player");
             player = other.transform.GetComponent<KeyboardSpawner>();
             if (player != null)
             {
@@ -37,14 +37,14 @@ public class ExtraShotThePlayer : MonoBehaviour
         destroyComponent.enabled = false;
         for (float i = duration; i > 0; i--)
         {
-            Debug.Log("Powerup: " + i + " seconds remaining!");
+            Debug.Log("ExtraShot: " + i + " seconds remaining!");
             yield return new WaitForSeconds(1);
         }
         if (player != null)
         {
             player.PowerupActive(false);
         }
-        Debug.Log("Powerup is gone!");
+        Debug.Log("ExtraShot is gone!");
         destroyComponent.enabled = true;
     }
 }

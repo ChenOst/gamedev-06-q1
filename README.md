@@ -140,3 +140,52 @@ public IEnumerator Fade()
 ```
 
  <img src="Images/shield1.png" width=400>  <img src="Images/shield2.png" width=400>
+ 
+## Extra Shot
+### Added new Script: ExtraShotSpawner
+When collision between ExtraShot and Player is detected, this script
+activates the player's extra shot for 5 seconds.
+
+```
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.tag == "Player")
+    {
+        Debug.Log("ExtraShot triggered by player");
+        player = other.transform.GetComponent<KeyboardSpawner>();
+        if (player != null)
+        {
+            player.PowerupActive(true);
+        }
+    ...
+```
+
+The `KeyboardSpawner` is changing the laser from regular to extra super cool laser.
+```
+if (extraIsActive)
+{
+    newObject = Instantiate(extraLaserShot, positionOfSpawnedObject, rotationOfSpawnedObject);
+}
+else
+{
+    newObject = Instantiate(prefabToSpawn, positionOfSpawnedObject, rotationOfSpawnedObject);
+}
+```
+
+<img src="Images/laser1.png" width=400>  <img src="Images/laser2.png" width=400>
+
+## Laser cooldown
+Another thing we added is that the player can't shoot straight at infinite
+ amount but he has to wait a certain time between shot and shot.
+ 
+ ### Added to: KeyboardSpawner Script 
+ 
+```
+private void Update() {
+if (Input.GetKeyDown(keyToPress) && Time.time > _nextLaser)
+{
+     _nextLaser = Time.time + _cooldown;
+    spawnObject();
+    }
+}
+```
