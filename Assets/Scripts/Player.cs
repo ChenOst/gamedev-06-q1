@@ -61,17 +61,19 @@ public class Player : MonoBehaviour
         _isShieldsActive = flag;
         _shield.SetActive(flag);
     }
-    public IEnumerator Fade()
+    public IEnumerator Fade(float duration)
     {
         Renderer renderer = _shield.GetComponent<Renderer>();
         Color newColor = renderer.material.color;
-        int i = 5;
-        for (float f = 1f; f >= 0; f -= 0.20f)
+        float f = 1f;
+        float fade = f/duration;
+        for (float i = duration; i > 0; i--)
         {
             newColor.a = f;
             renderer.material.color = newColor;
-            Debug.Log("Shield: " + i-- + " seconds remaining!");
-            yield return new WaitForSeconds(1f);
+            f -= fade;
+            Debug.Log("Shield: " + i + " seconds remaining!");
+            yield return new WaitForSeconds(1);
         }
     }
 }

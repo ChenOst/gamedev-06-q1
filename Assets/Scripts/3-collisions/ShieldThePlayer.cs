@@ -27,12 +27,14 @@ public class ShieldThePlayer : MonoBehaviour {
     }
     private IEnumerator ShieldTemporarily(DestroyOnTrigger2D destroyComponent) {
         destroyComponent.enabled = false;
-        yield return player.Fade();
+        yield return player.Fade(duration);
         if (player != null)
         {
             player.ShieldsActive(false);
         }
         Debug.Log("Shield gone!");
         destroyComponent.enabled = true;
+
     }
+
 }
