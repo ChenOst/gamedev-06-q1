@@ -122,6 +122,7 @@ private void OnTriggerEnter2D(Collider2D other) {
         }
     ...
 ```
+### Added to: Player Script 
 The function that makes the shield fade:
 ```
 public IEnumerator Fade(float duration)
